@@ -13,7 +13,6 @@
     --card: #1f1f1f;
     --text: #f5f5f5;
     --muted: #a0a0a0;
-    --danger: #e05252;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Tahoma, Arial, sans-serif; }
   body { background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 40px; }
@@ -25,72 +24,74 @@
   }
   header h1 { color: var(--gold); font-size: 1.6rem; margin-bottom: 4px; }
   header p { color: var(--muted); font-size: 0.9rem; }
-  .container { max-width: 760px; margin: 0 auto; padding: 16px; }
+  .container { max-width: 820px; margin: 0 auto; padding: 16px; }
 
-  .month-bar { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .month-bar { margin-bottom: 14px; }
   .month-bar input[type="month"] {
     background: var(--card); color: var(--text); border: 1px solid var(--gold-dark);
-    border-radius: 8px; padding: 10px 12px; font-size: 1rem; flex: 1;
+    border-radius: 8px; padding: 9px 12px; font-size: 1rem; width: 100%; max-width: 220px;
   }
 
   .summary { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
   .summary .card {
-    flex: 1; min-width: 150px; background: var(--card); border: 1px solid var(--gold-dark);
-    border-radius: 12px; padding: 14px; text-align: center;
+    flex: 1; min-width: 140px; background: var(--card); border: 1px solid var(--gold-dark);
+    border-radius: 12px; padding: 12px; text-align: center;
   }
-  .summary .card .label { color: var(--muted); font-size: 0.85rem; margin-bottom: 6px; }
-  .summary .card .value { color: var(--gold); font-size: 1.4rem; font-weight: bold; }
+  .summary .card .label { color: var(--muted); font-size: 0.8rem; margin-bottom: 6px; }
+  .summary .card .value { color: var(--gold); font-size: 1.25rem; font-weight: bold; }
+  .summary .card .value.small { font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-  form#expense-form {
-    background: var(--card); border: 1px solid var(--gold-dark); border-radius: 12px;
-    padding: 16px; margin-bottom: 16px; display: grid; gap: 10px;
+  details.newcat {
+    background: var(--card); border: 1px dashed var(--gold-dark);
+    border-radius: 10px; padding: 10px 14px; margin-bottom: 14px;
   }
-  .form-row { display: flex; gap: 10px; flex-wrap: wrap; }
-  .form-row > * { flex: 1; min-width: 130px; }
+  details.newcat summary { color: var(--gold); cursor: pointer; font-size: 0.95rem; }
+  details.newcat form { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  details.newcat input { flex: 1; min-width: 160px; }
+
   input, select {
     background: #2a2a2a; color: var(--text); border: 1px solid #444; border-radius: 8px;
-    padding: 10px 12px; font-size: 0.95rem; width: 100%;
+    padding: 9px 10px; font-size: 0.95rem; width: 100%;
   }
   input:focus, select:focus { outline: none; border-color: var(--gold); }
+
   button {
     background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #1a1a1a;
-    border: none; border-radius: 8px; padding: 10px 18px; font-size: 1rem; font-weight: bold;
-    cursor: pointer; width: 100%;
+    border: none; border-radius: 8px; padding: 9px 14px; font-size: 0.95rem; font-weight: bold;
+    cursor: pointer; white-space: nowrap;
   }
   button:hover { filter: brightness(1.1); }
-  button.secondary { background: #333; color: var(--text); border: 1px solid #555; font-weight: normal; }
-  button.small { padding: 5px 12px; font-size: 0.8rem; width: auto; }
-
-  .categories { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
-  .cat-chip {
-    background: var(--card); border: 1px solid var(--gold-dark); border-radius: 20px;
-    padding: 6px 14px; font-size: 0.85rem; color: var(--text);
-  }
-  .cat-chip b { color: var(--gold); }
-
-  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 12px; overflow: hidden; }
-  th, td { padding: 10px 12px; text-align: right; border-bottom: 1px solid #333; font-size: 0.9rem; }
-  th { background: #262626; color: var(--gold); }
-  tr:last-child td { border-bottom: none; }
-  td.amount { color: var(--gold); font-weight: bold; white-space: nowrap; }
-  td.date { color: var(--muted); white-space: nowrap; }
-  td.actions { white-space: nowrap; }
-  td.actions button { display: inline-block; width: auto; margin-inline-start: 6px; padding: 4px 10px; font-size: 0.75rem; }
+  .btn-sm { padding: 4px 10px; font-size: 0.75rem; }
   .btn-del { background: #5a2222; color: #ff9a9a; }
   .btn-edit { background: #333; color: var(--text); border: 1px solid #555; }
 
-  .empty { text-align: center; color: var(--muted); padding: 30px 10px; background: var(--card); border-radius: 12px; }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--gold-dark); border-radius: 12px; }
+  table { width: 100%; border-collapse: collapse; background: var(--card); }
+  th, td { padding: 9px 10px; text-align: right; border-bottom: 1px solid #333; font-size: 0.9rem; }
+  th { background: #262626; color: var(--gold); white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  td.amount { color: var(--gold); font-weight: bold; white-space: nowrap; }
+  td.date { color: var(--muted); white-space: nowrap; }
+  td.actions { white-space: nowrap; text-align: left; }
 
-  .bar-chart { display: grid; gap: 8px; margin-bottom: 16px; }
-  .bar-row { display: grid; grid-template-columns: 110px 1fr 70px; gap: 8px; align-items: center; font-size: 0.85rem; }
-  .bar-row .name { color: var(--muted); }
-  .bar-row .track { background: #2a2a2a; border-radius: 6px; height: 14px; overflow: hidden; }
-  .bar-row .fill { background: linear-gradient(90deg, var(--gold), var(--gold-light)); height: 100%; border-radius: 6px; }
-  .bar-row .val { color: var(--gold); text-align: left; }
+  #add-row td { background: #232323; border-bottom: 2px solid var(--gold-dark); }
+  #add-row input, #add-row select { padding: 7px 8px; font-size: 0.88rem; }
 
-  @media (max-width: 480px) {
-    .bar-row { grid-template-columns: 90px 1fr 60px; }
-    th, td { padding: 8px; font-size: 0.8rem; }
+  tr.empty-row td { text-align: center; color: var(--muted); padding: 24px 10px; }
+
+  h2.section { color: var(--gold); font-size: 1.1rem; margin: 22px 0 10px; }
+  .totals td.bar-cell { width: 40%; }
+  .bar-track { background: #2a2a2a; border-radius: 6px; height: 12px; overflow: hidden; }
+  .bar-fill { background: linear-gradient(90deg, var(--gold), var(--gold-light)); height: 100%; border-radius: 6px; }
+  tr.grand td { background: #2a2215; border-top: 2px solid var(--gold); font-size: 1rem; }
+  tr.grand td.name { color: var(--gold); font-weight: bold; }
+  tr.grand td.total { color: var(--gold); font-weight: bold; font-size: 1.15rem; }
+
+  .foot-note { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 18px; }
+
+  @media (max-width: 520px) {
+    th, td { padding: 7px 6px; font-size: 0.78rem; }
+    .summary .card .value { font-size: 1.05rem; }
   }
 </style>
 </head>
@@ -98,7 +99,7 @@
 
 <header>
   <h1>📊 مصروف الشهر</h1>
-  <p>نظّم مصاريفك: بنزين، كهربا، مي، المحل، معسل، فحم، غاز وأكثر</p>
+  <p>اختار التصنيف، دخّل الرقم، واضغط إضافة — والجدول يحسب الكل بالأخير</p>
 </header>
 
 <div class="container">
@@ -116,61 +117,85 @@
       <div class="label">عدد العمليات</div>
       <div class="value" id="count-items">0</div>
     </div>
+    <div class="card">
+      <div class="label">أكبر تصنيف</div>
+      <div class="value small" id="top-cat">—</div>
+    </div>
   </div>
 
-  <form id="expense-form" onsubmit="saveExpense(event)">
-    <input type="hidden" id="edit-id" value="">
-    <div class="form-row">
-      <select id="exp-category" required>
-        <option value="بنزين سيارة">⛽ بنزين سيارة</option>
-        <option value="كهربا">💡 كهربا</option>
-        <option value="مي">💧 مي</option>
-        <option value="محل العرب">🏪 محل العرب</option>
-        <option value="المحل الألماني (خضروات)">🥬 المحل الألماني (خضروات)</option>
-        <option value="معسل">💨 معسل</option>
-        <option value="فحم">🔥 فحم</option>
-        <option value="غاز">🛒 غاز</option>
-        <option value="غيره">📦 غيره</option>
-      </select>
-      <input type="number" id="exp-amount" placeholder="المبلغ" step="0.01" min="0" required>
-    </div>
-    <div class="form-row">
-      <input type="text" id="exp-note" placeholder="ملاحظة (اختياري)">
-      <input type="date" id="exp-date" required>
-    </div>
-    <div class="form-row">
-      <button type="submit" id="btn-save">➕ إضافة مصروف</button>
-      <button type="button" class="secondary" id="btn-cancel" style="display:none" onclick="resetForm()">إلغاء التعديل</button>
-    </div>
-  </form>
+  <details class="newcat">
+    <summary>➕ إضافة تصنيف جديد (أي شي بدك ياه)</summary>
+    <form onsubmit="addCategory(event)">
+      <input type="text" id="new-cat-input" placeholder="مثلاً: صيانة سيارة، مدارس، خبز..." maxlength="30">
+      <button type="submit" class="btn-sm">أضف التصنيف</button>
+    </form>
+  </details>
 
-  <div class="bar-chart" id="bar-chart"></div>
+  <div class="table-wrap">
+    <table id="exp-table">
+      <thead>
+        <tr>
+          <th>التصنيف</th>
+          <th>المبلغ</th>
+          <th>ملاحظة</th>
+          <th>التاريخ</th>
+          <th>إجراء</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="add-row">
+          <td><select id="cat-select"></select></td>
+          <td><input type="number" id="exp-amount" placeholder="0" step="0.01" min="0" onkeydown="keyAdd(event)"></td>
+          <td><input type="text" id="exp-note" placeholder="ملاحظة (اختياري)" onkeydown="keyAdd(event)"></td>
+          <td><input type="date" id="exp-date" onkeydown="keyAdd(event)"></td>
+          <td>
+            <input type="hidden" id="edit-id" value="">
+            <button type="button" id="btn-add" onclick="saveExpense()">➕ إضافة</button>
+          </td>
+        </tr>
+        <tr class="empty-row" id="empty-row">
+          <td colspan="5">لا يوجد مصاريف لهذا الشهر — اختار التصنيف من فوق وابدأ 🌟</td>
+        </tr>
+      </tbody>
+      <tbody id="exp-rows"></tbody>
+    </table>
+  </div>
 
-  <div class="categories" id="cat-chips"></div>
+  <h2 class="section">🧮 المجموع حسب التصنيف</h2>
+  <div class="table-wrap">
+    <table class="totals">
+      <thead>
+        <tr><th>التصنيف</th><th></th><th>المجموع</th></tr>
+      </thead>
+      <tbody id="totals-rows"></tbody>
+    </table>
+  </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>التصنيف</th>
-        <th>المبلغ</th>
-        <th>الملاحظة</th>
-        <th>التاريخ</th>
-        <th>إجراءات</th>
-      </tr>
-    </thead>
-    <tbody id="exp-table"></tbody>
-  </table>
-  <div class="empty" id="empty-msg" style="display:none">لا يوجد مصاريف لهذا الشهر بعد 🌟</div>
+  <p class="foot-note">🔒 بياناتك محفوظة بمتصفحك فقط (localStorage) ولا ترفع لأي مكان</p>
 
 </div>
 
 <script>
-const CATS = ["بنزين سيارة","كهربا","مي","محل العرب","المحل الألماني (خضروات)","معسل","فحم","غاز","غيره"];
+const DEFAULT_CATS = [
+  "بنزين سيارة", "كهربا", "مي", "غاز", "فحم", "معسل",
+  "خبز", "خضار وفواكه", "طعام بيت", "محل العرب", "المحل الألماني (خضروات)",
+  "إيجار بيت", "انترنت وتلفون", "أدوية", "منظفات", "صيانة بيت", "أطفال", "غيره"
+];
+const CATS_KEY = "custom-cats-v1";
 const STORE_KEY = "expenses-v1";
 
+function loadCats() {
+  let custom = [];
+  try { custom = JSON.parse(localStorage.getItem(CATS_KEY)) || []; } catch (e) { custom = []; }
+  if (!Array.isArray(custom)) custom = [];
+  const extra = custom.filter(function (c) {
+    return typeof c === "string" && c.trim() && DEFAULT_CATS.indexOf(c) === -1;
+  });
+  return DEFAULT_CATS.concat(extra);
+}
+
 function loadAll() {
-  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-  catch { return []; }
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; } catch (e) { return []; }
 }
 function saveAll(list) { localStorage.setItem(STORE_KEY, JSON.stringify(list)); }
 
@@ -179,140 +204,195 @@ function currentMonth() { return document.getElementById("month-picker").value; 
 function monthItems() {
   const m = currentMonth();
   if (!m) return [];
-  return loadAll().filter(e => e.date.startsWith(m));
-}
-
-function render() {
-  const items = monthItems();
-  const total = items.reduce((s, e) => s + Number(e.amount), 0);
-  document.getElementById("total-month").textContent = fmt(total);
-  document.getElementById("count-items").textContent = items.length;
-
-  renderChips(items);
-  renderBars(items);
-  renderTable(items);
+  return loadAll().filter(function (e) { return e.date && e.date.indexOf(m) === 0; });
 }
 
 function fmt(n) {
   return new Intl.NumberFormat("ar", { maximumFractionDigits: 2 }).format(n) + " ل.ل";
 }
 
-function renderChips(items) {
-  const box = document.getElementById("cat-chips");
-  const sums = {};
-  CATS.forEach(c => sums[c] = 0);
-  items.forEach(e => { if (sums[e.category] !== undefined) sums[e.category] += Number(e.amount); });
-  box.innerHTML = CATS.map(c =>
-    `<span class="cat-chip">${c}: <b>${fmt(sums[c])}</b></span>`
-  ).join("");
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&" + "amp;", "<": "&" + "lt;", ">": "&" + "gt;", '"': "&" + "quot;", "'": "&" + "#39;" }[c];
+  });
 }
 
-function renderBars(items) {
-  const box = document.getElementById("bar-chart");
-  const sums = {};
-  CATS.forEach(c => sums[c] = 0);
-  items.forEach(e => { if (sums[e.category] !== undefined) sums[e.category] += Number(e.amount); });
-  const max = Math.max(...CATS.map(c => sums[c]), 1);
-  box.innerHTML = CATS.map(c => `
-    <div class="bar-row">
-      <span class="name">${c}</span>
-      <span class="track"><span class="fill" style="width:${(sums[c]/max*100).toFixed(1)}%"></span></span>
-      <span class="val">${Intl.NumberFormat("ar",{maximumFractionDigits:0}).format(sums[c])}</span>
-    </div>`).join("");
+function newId() {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
+  return "id-" + Date.now() + "-" + Math.random().toString(36).slice(2);
 }
 
-function renderTable(items) {
-  const tbody = document.getElementById("exp-table");
-  const empty = document.getElementById("empty-msg");
-  const table = document.querySelector("table");
+function computeTotals(items) {
+  const by = {};
+  items.forEach(function (e) {
+    const c = e.category;
+    by[c] = (by[c] || 0) + Number(e.amount);
+  });
+  const cats = Object.keys(by)
+    .map(function (c) { return { cat: c, total: by[c] }; })
+    .sort(function (a, b) { return b.total - a.total; });
+  const grand = cats.reduce(function (s, x) { return s + x.total; }, 0);
+  return { cats: cats, grand: grand };
+}
+
+function fillCategorySelect() {
+  const sel = document.getElementById("cat-select");
+  const prev = sel.value;
+  const cats = loadCats();
+  sel.innerHTML = cats
+    .map(function (c) { return '<option value="' + escapeHtml(c) + '">' + escapeHtml(c) + "</option>"; })
+    .join("");
+  if (prev && cats.indexOf(prev) !== -1) sel.value = prev;
+}
+
+function render() {
+  const items = monthItems();
+  const t = computeTotals(items);
+  document.getElementById("total-month").textContent = fmt(t.grand);
+  document.getElementById("count-items").textContent = items.length;
+  document.getElementById("top-cat").textContent = t.cats.length ? t.cats[0].cat : "—";
+  fillCategorySelect();
+  renderEntries(items);
+  renderTotals(t);
+}
+
+function renderEntries(items) {
+  const tbody = document.getElementById("exp-rows");
+  const empty = document.getElementById("empty-row");
   tbody.innerHTML = "";
-  if (items.length === 0) {
-    table.style.display = "none";
-    empty.style.display = "block";
-    return;
-  }
-  table.style.display = "table";
-  empty.style.display = "none";
-  const sorted = [...items].sort((a, b) => b.date.localeCompare(a.date));
-  sorted.forEach(e => {
+  empty.style.display = items.length ? "none" : "table-row";
+  const sorted = items.slice().sort(function (a, b) {
+    return String(b.date).localeCompare(String(a.date));
+  });
+  sorted.forEach(function (e) {
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${e.category}</td>
-      <td class="amount">${fmt(e.amount)}</td>
-      <td>${e.note ? escapeHtml(e.note) : "—"}</td>
-      <td class="date">${e.date}</td>
-      <td class="actions">
-        <button class="btn-edit" onclick="startEdit('${e.id}')">✏️ تعديل</button>
-        <button class="btn-del" onclick="delExpense('${e.id}')">🗑️ حذف</button>
-      </td>`;
+    tr.innerHTML =
+      "<td>" + escapeHtml(e.category) + "</td>" +
+      "<td class='amount'>" + fmt(e.amount) + "</td>" +
+      "<td>" + (e.note ? escapeHtml(e.note) : "—") + "</td>" +
+      "<td class='date'>" + escapeHtml(e.date) + "</td>" +
+      "<td class='actions'>" +
+        "<button class='btn-edit btn-sm' onclick=\"startEdit('" + e.id + "')\">✏️</button> " +
+        "<button class='btn-del btn-sm' onclick=\"delExpense('" + e.id + "')\">🗑️</button>" +
+      "</td>";
     tbody.appendChild(tr);
   });
 }
 
-function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, c => ({
-    "&": "&" + "amp;",
-    "<": "&" + "lt;",
-    ">": "&" + "gt;",
-    '"': "&" + "quot;",
-    "'": "&" + "#39;"
-  })[c]);
+function renderTotals(t) {
+  const tbody = document.getElementById("totals-rows");
+  if (!t.cats.length) {
+    tbody.innerHTML = "<tr class='empty-row'><td colspan='3'>لسا ما في مصاريف — المجموع بيظهر تلقائياً أول ما تضيف</td></tr>";
+    return;
+  }
+  const max = Math.max.apply(null, t.cats.map(function (x) { return x.total; }));
+  let html = t.cats.map(function (x) {
+    const pct = (x.total / max * 100).toFixed(1);
+    return "<tr>" +
+      "<td>" + escapeHtml(x.cat) + "</td>" +
+      "<td class='bar-cell'><div class='bar-track'><div class='bar-fill' style='width:" + pct + "%'></div></div></td>" +
+      "<td class='amount'>" + fmt(x.total) + "</td>" +
+    "</tr>";
+  }).join("");
+  html += "<tr class='grand'>" +
+    "<td class='name'>الإجمالي الكلي</td>" +
+    "<td></td>" +
+    "<td class='total'>" + fmt(t.grand) + "</td>" +
+  "</tr>";
+  tbody.innerHTML = html;
 }
 
-function saveExpense(ev) {
-  ev.preventDefault();
+function keyAdd(ev) {
+  if (ev.key === "Enter") { ev.preventDefault(); saveExpense(); }
+  if (ev.key === "Escape") { resetRow(); }
+}
+
+function saveExpense() {
+  const amountInput = document.getElementById("exp-amount");
+  const amount = parseFloat(amountInput.value);
+  if (!amount || amount <= 0) {
+    alert("دخّل المبلغ أول");
+    amountInput.focus();
+    return;
+  }
   const id = document.getElementById("edit-id").value;
   const exp = {
-    id: id || crypto.randomUUID(),
-    category: document.getElementById("exp-category").value,
-    amount: parseFloat(document.getElementById("exp-amount").value),
+    id: id || newId(),
+    category: document.getElementById("cat-select").value,
+    amount: amount,
     note: document.getElementById("exp-note").value.trim(),
-    date: document.getElementById("exp-date").value
+    date: document.getElementById("exp-date").value || todayISO()
   };
   const all = loadAll();
-  const idx = all.findIndex(e => e.id === exp.id);
+  const idx = all.findIndex(function (e) { return e.id === exp.id; });
   if (idx >= 0) all[idx] = exp; else all.push(exp);
   saveAll(all);
-  resetForm();
+  resetRow();
   render();
+  amountInput.focus();
 }
 
 function startEdit(id) {
-  const e = loadAll().find(x => x.id === id);
+  const e = loadAll().find(function (x) { return x.id === id; });
   if (!e) return;
+  fillCategorySelect();
+  const sel = document.getElementById("cat-select");
+  if (loadCats().indexOf(e.category) === -1) {
+    const opt = document.createElement("option");
+    opt.value = e.category;
+    opt.textContent = e.category;
+    sel.appendChild(opt);
+  }
+  sel.value = e.category;
   document.getElementById("edit-id").value = e.id;
-  document.getElementById("exp-category").value = e.category;
   document.getElementById("exp-amount").value = e.amount;
   document.getElementById("exp-note").value = e.note || "";
   document.getElementById("exp-date").value = e.date;
-  document.getElementById("btn-save").textContent = "💾 حفظ التعديل";
-  document.getElementById("btn-cancel").style.display = "inline-block";
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("btn-add").textContent = "💾 حفظ";
+  document.getElementById("exp-amount").focus();
 }
 
 function delExpense(id) {
   if (!confirm("متأكد إنك بدك تحذف هالمصروف؟")) return;
-  saveAll(loadAll().filter(e => e.id !== id));
+  saveAll(loadAll().filter(function (e) { return e.id !== id; }));
+  if (document.getElementById("edit-id").value === id) resetRow();
   render();
 }
 
-function resetForm() {
-  document.getElementById("expense-form").reset();
+function resetRow() {
   document.getElementById("edit-id").value = "";
-  document.getElementById("btn-save").textContent = "➕ إضافة مصروف";
-  document.getElementById("btn-cancel").style.display = "none";
+  document.getElementById("exp-amount").value = "";
+  document.getElementById("exp-note").value = "";
+  document.getElementById("btn-add").textContent = "➕ إضافة";
   setToday();
 }
 
-function setToday() {
-  const now = new Date();
-  const iso = new Date(now.getTime() - now.getTimezoneOffset()*60000).toISOString().slice(0,10);
-  document.getElementById("exp-date").value = iso;
+function addCategory(ev) {
+  ev.preventDefault();
+  const inp = document.getElementById("new-cat-input");
+  const name = inp.value.trim();
+  if (!name) { alert("اكتب اسم التصنيف"); return; }
+  const cats = loadCats();
+  if (cats.indexOf(name) !== -1) { alert("التصنيف موجود أصلاً"); return; }
+  let custom = [];
+  try { custom = JSON.parse(localStorage.getItem(CATS_KEY)) || []; } catch (e) { custom = []; }
+  if (!Array.isArray(custom)) custom = [];
+  custom.push(name);
+  localStorage.setItem(CATS_KEY, JSON.stringify(custom));
+  inp.value = "";
+  fillCategorySelect();
+  document.getElementById("cat-select").value = name;
+  render();
 }
 
+function todayISO() {
+  const n = new Date();
+  return new Date(n.getTime() - n.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+}
+function setToday() { document.getElementById("exp-date").value = todayISO(); }
+
 (function init() {
-  const now = new Date();
-  document.getElementById("month-picker").value = now.toISOString().slice(0,7);
+  document.getElementById("month-picker").value = new Date().toISOString().slice(0, 7);
   setToday();
   render();
 })();
